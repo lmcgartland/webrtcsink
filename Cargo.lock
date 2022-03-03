@@ -1848,6 +1848,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "webrtcsink-signalling"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "async-std",
+ "async-tungstenite",
+ "clap",
+ "futures",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "tracing",
+ "tracing-log",
+ "tracing-subscriber",
+ "uuid",
+]
+
+[[package]]
 name = "wepoll-ffi"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
