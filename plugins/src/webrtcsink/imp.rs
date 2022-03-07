@@ -402,6 +402,7 @@ fn setup_encoding(
             enc.set_property_from_str("gop-size", "-1");
             enc.set_property_from_str("rc-mode", "cbr-ld-hq");
             enc.set_property_from_str("preset", "low-latency-hq");
+            enc.set_property("qos", true);
             enc.set_property("zerolatency", true);
         }
         _ => (),
