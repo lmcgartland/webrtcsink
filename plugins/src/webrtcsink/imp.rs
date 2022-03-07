@@ -354,7 +354,7 @@ fn setup_encoding(
         let mut structure_builder = gst::Structure::builder("video/x-raw")
             .field("pixel-aspect-ratio", gst::Fraction::new(1, 1));
 
-        if codec.encoder.name() == "nvh264enc" {
+        if codec.encoder.name() == "nvh264enc" || codec.encoder.name() == "nvh265enc" {
             // Quirk: nvh264enc can perform conversion from RGB formats, but
             // doesn't advertise / negotiate colorimetry correctly, leading
             // to incorrect color display in Chrome (but interestingly not in
@@ -397,7 +397,7 @@ fn setup_encoding(
             enc.set_property("b-adapt", false);
             enc.set_property("vbv-buf-capacity", 120u32);
         }
-        "nvh264enc" => {
+        "nvh264enc" | "nvh265enc"=> {
             enc.set_property("bitrate", 2048u32);
             enc.set_property_from_str("gop-size", "-1");
             enc.set_property_from_str("rc-mode", "cbr-ld-hq");
@@ -496,7 +496,7 @@ impl VideoEncoder {
     fn bitrate(&self) -> i32 {
         match self.factory_name.as_str() {
             "vp8enc" | "vp9enc" => self.element.property::<i32>("target-bitrate"),
-            "x264enc" | "nvh264enc" => (self.element.property::<u32>("bitrate") * 1000) as i32,
+            "x264enc" | "nvh264enc" | "nvh265enc" => (self.element.property::<u32>("bitrate") * 1000) as i32,
             _ => unreachable!(),
         }
     }
