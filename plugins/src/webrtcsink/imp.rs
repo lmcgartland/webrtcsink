@@ -399,10 +399,10 @@ fn setup_encoding(
         }
         "nvh264enc" | "nvh265enc"=> {
             enc.set_property("bitrate", 2048u32);
-            enc.set_property_from_str("preset", "low-latency");
-            enc.set_property_from_str("gop-size", "-1");
+            enc.set_property_from_str("preset", "low-latency-hq");
+            enc.set_property("gop-size", 2560i32);
             enc.set_property_from_str("rc-mode", "cbr-ld-hq");
-            // enc.set_property("qos", true);
+            enc.set_property("qos", true);
             enc.set_property("zerolatency", true);
         }
         _ => (),
