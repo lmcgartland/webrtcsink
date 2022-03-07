@@ -401,6 +401,7 @@ fn setup_encoding(
             enc.set_property("bitrate", 2048u32);
             enc.set_property_from_str("gop-size", "-1");
             enc.set_property_from_str("rc-mode", "cbr-ld-hq");
+            enc.set_property_from_str("preset", "low-latency-hq");
             enc.set_property("zerolatency", true);
         }
         _ => (),
@@ -518,7 +519,7 @@ impl VideoEncoder {
     fn set_bitrate(&mut self, element: &super::WebRTCSink, bitrate: i32) {
         match self.factory_name.as_str() {
             "vp8enc" | "vp9enc" => self.element.set_property("target-bitrate", bitrate),
-            "x264enc" | "nvh264enc" => self
+            "x264enc" | "nvh264enc" | "nvh265enc" => self
                 .element
                 .set_property("bitrate", (bitrate / 1000) as u32),
             _ => unreachable!(),
