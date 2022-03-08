@@ -286,10 +286,9 @@ fn make_converter_for_video_caps(caps: &gst::Caps) -> Result<gst::Element, Error
         }
     }
 
-    Ok(gst::parse_bin_from_description_with_name(
+    Ok(gst::parse_bin_from_description(
         "cudaupload ! cudaconvert ! cudascale ! videorate drop-only=true skip-to-first=true",
         true,
-        "cuda-override"
     )?
     .upcast())
 }
