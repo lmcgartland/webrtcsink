@@ -541,7 +541,7 @@ impl VideoEncoder {
 
             s.set("height", height);
             s.set("width", width);
-            s.set("framerate", self.halved_framerate);
+            // s.set("framerate", self.halved_framerate);
 
             self.mitigation_mode =
                 WebRTCSinkMitigationMode::DOWNSAMPLED | WebRTCSinkMitigationMode::DOWNSCALED;
@@ -551,7 +551,7 @@ impl VideoEncoder {
 
             s.set("height", height);
             s.set("width", width);
-            s.remove_field("framerate");
+            // s.remove_field("framerate");
 
             self.mitigation_mode = WebRTCSinkMitigationMode::DOWNSCALED;
         } else if bitrate < 2000000 {
@@ -560,13 +560,13 @@ impl VideoEncoder {
 
             s.set("height", height);
             s.set("width", width);
-            s.remove_field("framerate");
+            // s.remove_field("framerate");
 
             self.mitigation_mode = WebRTCSinkMitigationMode::DOWNSCALED;
         } else {
             s.remove_field("height");
             s.remove_field("width");
-            s.remove_field("framerate");
+            // s.remove_field("framerate");
 
             self.mitigation_mode = WebRTCSinkMitigationMode::NONE;
         }
