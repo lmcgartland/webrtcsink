@@ -1831,7 +1831,7 @@ impl WebRTCSink {
 
             task::spawn(async move {
                 let mut interval =
-                    async_std::stream::interval(std::time::Duration::from_millis(1000));
+                    async_std::stream::interval(std::time::Duration::from_millis(100));
 
                 while interval.next().await.is_some() {
                     let element_clone = element_clone.clone();
