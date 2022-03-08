@@ -399,10 +399,10 @@ fn setup_encoding(
         }
         "nvh264enc" | "nvh265enc"=> {
             enc.set_property("bitrate", 2048u32);
-            enc.set_property_from_str("preset", "low-latency");
-            enc.set_property_from_str("rc-mode", "cbr");
-            // enc.set_property_from_str("gop-size", "-1");
-            enc.set_property_from_str("gop-size", "240");
+            enc.set_property_from_str("preset", "low-latency-hq");
+            enc.set_property_from_str("rc-mode", "cbr-ld-hq");
+            enc.set_property_from_str("gop-size", "-1");
+            // enc.set_property_from_str("gop-size", "240");
             // enc.set_property("qos", true);
             enc.set_property("zerolatency", true);
         }
@@ -1831,7 +1831,7 @@ impl WebRTCSink {
 
             task::spawn(async move {
                 let mut interval =
-                    async_std::stream::interval(std::time::Duration::from_millis(500));
+                    async_std::stream::interval(std::time::Duration::from_millis(1000));
 
                 while interval.next().await.is_some() {
                     let element_clone = element_clone.clone();
