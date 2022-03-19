@@ -400,7 +400,7 @@ fn setup_encoding(
         "nvh264enc" => {
             enc.set_property_from_str("preset", "low-latency-hq");
             enc.set_property("bitrate", 2048u32);
-            enc.set_property_from_str("gop-size", "480");
+            enc.set_property_from_str("gop-size", "120");
             enc.set_property_from_str("rc-mode", "cbr-ld-hq");
             enc.set_property("zerolatency", true);
         }
