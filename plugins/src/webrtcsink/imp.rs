@@ -401,7 +401,7 @@ fn setup_encoding(
             enc.set_property("bitrate", 2048u32);
             // enc.set_property("zerolatency", true);
             // enc.set_property("qos", true);
-            enc.set_property_from_str("gop-size", "240");
+            enc.set_property_from_str("gop-size", "-1");
             enc.set_property_from_str("rc-mode", "cbr-ld-hq");
             enc.set_property_from_str("preset", "low-latency-hq");
         }
@@ -425,7 +425,7 @@ fn setup_encoding(
     let parse_caps = if codec_name == "video/x-h264" {
         gst::Caps::builder(codec_name)
             .field("stream-format", "avc")
-            .field("profile", "main")
+            .field("profile", "high")
             .build()
     } else if codec_name == "video/x-h265" {
         gst::Caps::builder(codec_name)
