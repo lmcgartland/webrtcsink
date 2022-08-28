@@ -961,6 +961,9 @@ impl Consumer {
 
         let appsrc = appsrc.downcast::<gst_app::AppSrc>().unwrap();
         gst_utils::StreamProducer::configure_consumer(&appsrc);
+        
+        appsrc.set_max_time(0 * gst::ClockTime::MSECOND);
+
         self.pipeline
             .sync_children_states()
             .with_context(|| format!("Connecting input stream for {}", self.peer_id))?;
